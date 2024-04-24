@@ -1,0 +1,45 @@
+seed: 25
+data:
+  path: '/n/holylfs05/LABS/finkbeiner_lab/Users/nmudur/project_dirs/CMD_2D/data_processed/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx64_train.npy'
+  conditional: True
+  labels_subset:
+    - 0
+    - 1
+  labels: '../../data_processed/params_IllustrisTNG.txt'
+  transforms: 'minmax+randfliprot'
+  normfile: '/n/holylfs05/LABS/finkbeiner_lab/Users/nmudur/project_dirs/CMD_2D/diffusion-models-for-cosmological-fields/annotated/results/misc/IllustrisTNGLH_minmax.pkl'
+  normkey: 'Maps_Mcdm_IllustrisTNG_LH_z=0.00.npy'
+  labels_normalize: True
+
+architecture:
+  model: explicitconditional
+  dim_mults:
+    - 1
+    - 2
+    - 4
+    - 8
+  init_conv: False
+  use_cond_dim_for_block: True
+  non_linear_conditional_embedding: True
+  unet_dim: 64
+  circular_conv: True
+
+diffusion:
+  beta_schedule: 'sigmoid_cumulativeposteriorsigma_schedule'
+  schedule_args: {}
+  timesteps: 1000
+  sampler_args:
+    sampler_type: 'uniform'
+
+train:
+  max_iterations: 60001
+  batch_size: 20
+  optimizer: Adam
+  learning_rate: 2e-4
+  loss_args:
+    loss_version: standard
+    recon_loss: False
+    prior_loss: False
+    loss_type: weightedhuber
+    recon_weight: 1.0
+    prior_weight: 1.0

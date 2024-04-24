@@ -1,0 +1,46 @@
+seed: 20
+data:
+  path: '../../data_processed/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx64_train.npy'
+  conditional: True
+  labels_subset: 
+    - 0
+    - 1
+  labels: '../../data_processed/params_IllustrisTNG.txt'
+  transforms: 'minmax+randfliprot'
+  labels_normalize: True
+  valdata_path: '../../data_processed/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx64_val.npz'
+  
+
+architecture:
+  model: baseline
+  dim_mults:
+    - 1
+    - 2
+    - 4
+    - 8
+  init_conv: False
+  unet_dim: 32
+
+diffusion:
+  beta_schedule: linear_beta_schedule
+  schedule_args:
+    beta_start: 0.0001
+    beta_end: 0.02
+  timesteps: 2000
+  sampler_args:
+    sampler_type: 'uniform'
+
+train:
+  epochs: 150
+  batch_size: 40
+  optimizer: Adam
+  learning_rate: 2e-4
+  loss_type: huber
+  scheduler: 'ReduceLROnPlateau'
+  scheduler_args:
+    gamma: 0.1
+    patience: 2
+    milestones: 
+      - 30
+      - 60
+    threshold: 1e-2

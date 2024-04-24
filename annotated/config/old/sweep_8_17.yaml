@@ -1,0 +1,29 @@
+program: main.py
+method: grid
+
+data:
+  path: '../forked_code/data/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx64_train.npy'
+
+architecture:
+  model: baseline
+  dim_mults:
+    - 1
+    - 2
+    - 4
+
+
+diffusion:
+  beta_schedule: linear_beta_schedule
+  timesteps: 4000
+
+train:
+  epochs: 10
+  batch_size: 
+    values: [40, 64, 100, 128]
+  optimizer: Adam #do
+  learning_rate: [1e-2, 5e-3, 1e-3, 5e-4]
+
+
+
+
+

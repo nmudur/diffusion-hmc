@@ -1,0 +1,26 @@
+data:
+  path: '../../data_processed/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx64_augmentedtrain.npy'
+  conditional: False
+
+architecture:
+  model: baseline
+  dim_mults:
+    - 1
+    - 2
+    - 4
+    - 8
+  init_conv: False
+
+diffusion:
+  beta_schedule: linear_beta_schedule
+  schedule_args:
+    beta_start: 0.0001
+    beta_end: 0.02
+  timesteps: 2000
+
+train:
+  epochs: 15
+  batch_size: 40
+  optimizer: Adam #do
+  learning_rate: 5e-4
+  loss_type: huber

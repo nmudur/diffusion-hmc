@@ -9,6 +9,7 @@ forked_code/improved_diffusion/data/*
 forked_code/.ipynb_checkpoints/*
 forked_code/improved_diffusion/.ipynb_checkpoints/*
 forked_code/data/*
+config/old/*
 forked_code/image_train_upp.py
 *.swp
 data_processed/*

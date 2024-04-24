@@ -1,0 +1,49 @@
+seed: 20
+data:
+  path: '../../data_processed/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx256_train.npy'
+  conditional: True
+  labels_subset:
+    - 0
+    - 1
+  labels: '../../data_processed/params_IllustrisTNG.txt'
+  transforms: 'minmax+randfliprot'
+  labels_normalize: True
+
+architecture:
+  model: baseline
+  dim_mults:
+    - 1
+    - 2
+    - 4
+    - 8
+  init_conv: False
+  unet_dim: 64
+
+diffusion:
+  beta_schedule: linear_beta_schedule
+  schedule_args:
+    beta_start: 0.0001
+    beta_end: 0.02
+  timesteps: 2000
+  sampler_args:
+    sampler_type: 'uniform'
+
+train:
+  epochs: 360
+  batch_size: 20
+  optimizer: Adam
+  learning_rate: 2e-5
+  loss_args:
+    loss_version: reconstruction #default: standard
+    loss_type: huber
+    recon_loss: True
+    recon_weight: 100
+    prior_loss: False
+    prior_weight: 1.0
+  optimizer_reset: True
+
+resume_ckp: 'checkpoint_108000.pt'
+resume_id: '3s8yktww'
+resume_name: 'Run_10-30_21-32'
+
+

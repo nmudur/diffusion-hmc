@@ -1,0 +1,27 @@
+seed: 20
+data:
+  path: '/n/holylfs05/LABS/finkbeiner_lab/Everyone/CAMELS/CMD2D/data/Maps_Mcdm_IllustrisTNG_LH_z=0.00.npy'
+  labels_subset:
+    - 0
+    - 1
+  labels: '/n/holylfs05/LABS/finkbeiner_lab/Everyone/CAMELS/CMD2D/data/params_IllustrisTNG.txt'
+  normfile: '/n/holylfs05/LABS/finkbeiner_lab/Users/nmudur/project_dirs/CMD_2D/diffusion-models-for-cosmological-fields/annotated/results/misc/IllustrisTNGLH_norms.pkl'
+  normkey: 'Maps_Mcdm_IllustrisTNG_LH_z=0.00.npy'
+  transforms: 'standardscale+randfliprot'
+  labels_normalize: True
+
+train:
+  epochs: 200
+  batch_size: 100
+  learning_rate: 1e-3
+
+wavelets:
+  J: 6
+  L: 8
+  Order: 2
+
+model:
+  name: ScModelTwoLayer
+  skip: True
+  with_errors: True
+  hidden: 50

@@ -1,0 +1,29 @@
+data:
+  path: '../../data_processed/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx64_augmentedtrain.npy'
+  conditional: False
+
+architecture:
+  model: baseline
+  dim_mults:
+    - 1
+    - 2
+    - 4
+    - 8
+  init_conv: False
+
+diffusion:
+  beta_schedule: cosine_beta_schedule
+  schedule_args:
+    s: 0.015
+  timesteps: 2000
+
+train:
+  epochs: 15
+  batch_size: 40
+  optimizer: Adam #do
+  learning_rate: 2e-4
+  loss_type: huber
+
+resume_ckp: "checkpoint_20000.pt"
+resume_id: "3mtg7xwt"
+resume_name: "Run_9-15_15-0"
