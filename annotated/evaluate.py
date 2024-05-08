@@ -447,6 +447,7 @@ def plot_scatter_prediction_truth(params_true, mean_NN, std_NN=None, params= ['O
         
         
 ### CONDITIONAL
+# Based on code here: https://camels-multifield-dataset.readthedocs.io/en/latest/inference.html
 class Preprocessed_data_for_param_evaluation():
     def __init__(self, data, verbose, device='cpu', meanstd_norm=None, time=None, diffusion=None, labels_subset=np.arange(6)):
         '''
@@ -512,6 +513,8 @@ class Preprocessed_data_for_param_evaluation():
 def get_results_model(model, device, test_loader):
     '''
     Get the parameter predictions given a classifier model. 
+    Based on code here: https://camels-multifield-dataset.readthedocs.io/en/latest/inference.html
+
     Args:
         model: classifier. This accommodates both time dependent and time independent models.
         test_loader: (Images, t: optional, Labels)
@@ -621,7 +624,6 @@ def get_results_model(model, device, test_loader):
     dataset[:, 12:] = errors_NN # convert variance to std
     return dataset, Norm_error
 
-
 def get_train_cosmo_params(Bsize=20, path='/n/holylfs06/LABS/finkbeiner_lab/Users/nmudur/project_dirs/CMD_2D/data_processed/params_IllustrisTNG.txt', seed=0, replace=False):
     #To make this compatible with existing code, use replace = True
     params = np.loadtxt(path)
@@ -630,8 +632,6 @@ def get_train_cosmo_params(Bsize=20, path='/n/holylfs06/LABS/finkbeiner_lab/User
     idx= rng.choice(train_upplim, Bsize, replace=replace)
     params_actual = params[:train_upplim, :][idx]
     return params_actual.astype(np.float32)
-
-
 
 def get_train_cosmo_params_in_range(param_range, labels_subset, path='../data_processed/params_IllustrisTNG.txt', get_indices=False):
     params = np.loadtxt(path)
@@ -642,7 +642,6 @@ def get_train_cosmo_params_in_range(param_range, labels_subset, path='../data_pr
     if get_indices:
         return params_actual.astype(np.float32)[mask, :], np.arange(len(params))[:train_upplim][mask]
     return params_actual.astype(np.float32)[mask, :]
-
 
 
 def get_validation_cosmo_params(Bsize=20, valpath='/n/holylfs06/LABS/finkbeiner_lab/Users/nmudur/project_dirs/CMD_2D/data_processed/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx256_val.npz', seed=0, replace=False):

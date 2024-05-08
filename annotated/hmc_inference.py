@@ -48,9 +48,6 @@ class TimeBatchedCondModel(nn.Module):
             if ((param[0]-self.PMIN[0])>=0) and ((param[1]-self.PMIN[1])>=0) and ((self.PMAX[0] - param[0])>=0) and ((self.PMAX[1] - param[1])>=0):
                 with torch.set_grad_enabled(True): # This is the default, but let's be explicit.
                     # reimplements a t-batched version of get_single_vlb_timestep
-                    #print(torch.cuda.memory_summary())
-                    #gc.collect()
-                    #torch.cuda.empty_cache() # Added this because memory doesnt seem to automatically drop to zero for every new eval of this func.
                     for it, tbatch in enumerate(self.timestep_batches):
                         xbatch = self.x.expand(len(tbatch), self.x.shape[1], self.x.shape[2], self.x.shape[3]) #.to(torch.float32)
                         pbatch = param.view(1, len(param)).expand(len(tbatch), len(param))
@@ -62,7 +59,6 @@ class TimeBatchedCondModel(nn.Module):
                         tnzmask = (tbatch!=0)
                         mean1, logvar1 = self.diff.q_posterior_mean_logvariance(xbatch[tnzmask], x_t[tnzmask], tbatch[tnzmask])  # q(x_t-1 | x_0, x_t): x_[1, T-1] |x_0, x_[2, T] in math
                         kl_divs = hfd.normal_kl(mean1, logvar1, mean2[tnzmask], logvar2[tnzmask]).sum(dim=[1, 2, 3])  # BCHW -> B = len(timesteps) 
-                        #BUG: this throws the nan. Maybe because there was already a nan here?
                         assert kl_divs.shape[0]==tnzmask.sum()
                         # for 0: mean2 = mu0_mean in get_single_vlb_term
                         if it==0:
@@ -76,7 +72,6 @@ class TimeBatchedCondModel(nn.Module):
                             value = -kl_divs.sum()
                             if self.compute_gradients and eval_gradients:
                                 accumulated_grad.add_(torch.autograd.grad(value, param, retain_graph=False)[0]) # NOT vlb_loss since you've already accounted for its grad
-                                #accumulated_grad += torch.autograd.grad(value, param, retain_graph=False)[0]
                             vlb_loss.add_(value.detach()) # sum over timesteps. Speedup: added detach since the gradient is already computed.
 
             else: # Outside prior
