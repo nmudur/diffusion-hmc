@@ -6,6 +6,7 @@ fields/*
 config/old/*
 *.swp
 annotated/old_pyscripts/*
+checkpoints/*
 annotated/*.err
 annotated/*.log
 annotated/track_checkpoint_likelihoods.py
