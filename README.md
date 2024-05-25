@@ -24,3 +24,13 @@ diffusion-hmc
     │   Figures_HMC_Clean.ipynb: Parameter Inference Plots
     │   Figure_Robustness.ipynb: Figure 7: Robustness to Noise
 ```
+
+# Citation
+If you found this repo or our paper useful / relevant:
+
+@article{mudur2024diffusion,
+  title={Diffusion-HMC: Parameter Inference with Diffusion Model driven Hamiltonian Monte Carlo},
+  author={Mudur, Nayantara and Cuesta-Lazaro, Carolina and Finkbeiner, Douglas P},
+  journal={arXiv preprint arXiv:2405.05255},
+  year={2024}
+}
