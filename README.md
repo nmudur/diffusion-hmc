@@ -1,4 +1,4 @@
-# Diffusion-HMC
+# Diffusion-HMC: Parameter Inference with Diffusion Model driven Hamiltonian Monte Carlo
 [![arXiv](https://img.shields.io/badge/arXiv-2405.05255%20-purple.svg)](https://arxiv.org/abs/2405.05255)
 
 # Abstract
