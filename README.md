@@ -1,4 +1,5 @@
 # Diffusion-HMC
+[![arXiv](https://img.shields.io/badge/arXiv-2405.05255%20-purple.svg)](https://arxiv.org/abs/2405.05255)
 
 # Abstract
 Diffusion generative models have excelled at diverse image generation and reconstruction tasks across fields. A less explored avenue is their application to discriminative tasks involving regression or classification problems. The cornerstone of modern cosmology is the ability to generate predictions for observed astrophysical fields from theory and constrain physical models from observations using these predictions. This work uses a single diffusion generative model to address these interlinked objectives -- as a surrogate model or emulator for cold dark matter density fields conditional on input cosmological parameters, and as a parameter inference model that solves the inverse problem of constraining the cosmological parameters of an input field. The model is able to emulate fields with summary statistics consistent with those of the simulated target distribution. 
@@ -19,6 +20,7 @@ diffusion-hmc
 │   │   classifier_scripts  # Directory with code needed for baseline parameter inference network comparisons
 |
 └───notebooks
-    │   
-    │   
+    │   Figure1_LH.ipynb: Figure 1
+    │   Figures_HMC_Clean.ipynb: Parameter Inference Plots
+    │   Figure_Robustness.ipynb: Figure 7: Robustness to Noise
 ```
