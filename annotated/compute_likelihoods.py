@@ -1,3 +1,4 @@
+"""Grid-based parameter inference."""
 import matplotlib.pyplot as plt
 import numpy as np
 import pickle
