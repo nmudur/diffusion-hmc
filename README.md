@@ -25,6 +25,25 @@ diffusion-hmc
     │   Figure_Robustness.ipynb: Figure 7: Robustness to Noise
 ```
 
+## Commands
+### HMC Inference 
+**For the Robustness figure**
+```bash
+python hmc_inference.py $NOISE_ID $FIELD_ID
+```
+This assumes the noised samples have been saved. 
+The same script can be applied with some straightforward modifications, to generate the parameter constraints in other Figures.
+
+### Train the 256x256 model
+```bash
+python main.py config/e1_nx256_newlinearsmall.yaml
+```
+
+### Train the 64x64 model
+```bash
+python main.py config/e1_nx64_newlinearsmall.yaml
+```
+
 # Citation
 If you found this repo or our paper useful / relevant:
 ```
