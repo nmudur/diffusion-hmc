@@ -25,14 +25,20 @@ diffusion-hmc
     │   Figure_Robustness.ipynb: Figure 7: Robustness to Noise
 ```
 
-## Commands
-### HMC Inference 
+# Commands
+## Parameter Inference 
+### HMC Inference
 **For the Robustness figure**
 ```bash
 python hmc_inference.py $NOISE_ID $FIELD_ID
 ```
 This assumes the noised samples have been saved. 
 The same script can be applied with some straightforward modifications, to generate the parameter constraints in other Figures.
+
+### Grid-based Parameter Inference
+```bash
+python compute_likelihoods.py --sdpath $SDPATH --savedir $SAVEDIR --data_subtype $split --ndiscretization $NDISC --pseed 53 --nsamples 1 --transform_seeds 2 --vlb_seeds 9 --num_params 10 --grid_extent 0.1 --vlb_timesteps $VLBT --reseed_over_time --Nbatches 200 --plotsdir $PLOTSDIR
+```
 
 ### Train the 256x256 model
 ```bash
