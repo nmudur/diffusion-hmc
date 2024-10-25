@@ -25,7 +25,7 @@ diffusion-hmc
     │   Figure_Robustness.ipynb: Figure 7: Robustness to Noise
 ```
 
-We use architecture blocks from 
+Our architecture blocks are based on 
 *  Hugging Face's [The Annotated Diffusion model](https://huggingface.co/blog/annotated-diffusion)
 *  OpenAI's [Improved Diffusion](https://github.com/openai/improved-diffusion/tree/main)
 *  [Denoising Diffusion Pytorch](https://github.com/lucidrains/denoising-diffusion-pytorch)
