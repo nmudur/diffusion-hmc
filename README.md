@@ -28,6 +28,7 @@ diffusion-hmc
 We use architecture blocks from 
 *  Hugging Face's [The Annotated Diffusion model](https://huggingface.co/blog/annotated-diffusion)
 *  [Denoising Diffusion Pytorch](https://github.com/lucidrains/denoising-diffusion-pytorch)
+that are based on the original DDPM paper:
 *  [Denoising Diffusion Probabilistic Models](https://github.com/hojonathanho/diffusion)
 
 # Commands
