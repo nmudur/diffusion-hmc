@@ -25,6 +25,11 @@ diffusion-hmc
     │   Figure_Robustness.ipynb: Figure 7: Robustness to Noise
 ```
 
+We use architecture blocks from 
+*  Hugging Face's [The Annotated Diffusion model](https://huggingface.co/blog/annotated-diffusion)
+*  [Denoising Diffusion Pytorch](https://github.com/lucidrains/denoising-diffusion-pytorch)
+*  [Denoising Diffusion Probabilistic Models](https://github.com/hojonathanho/diffusion)
+
 # Commands
 ## Parameter Inference 
 ### HMC Inference
