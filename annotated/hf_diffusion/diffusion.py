@@ -5,7 +5,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from tqdm.auto import tqdm
 import numpy as np
-#from .classifier_guidance import condition_mean
 
 def extract(a, t, x_shape):
     batch_size = t.shape[0]
