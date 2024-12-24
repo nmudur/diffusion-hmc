@@ -4,7 +4,6 @@ import torch
 import torchvision
 import numpy as np
 from numpy.fft import *
-#from torchvision.transforms import Compose, 
 from torchvision.utils import save_image
 
 import torch.nn.functional as F
@@ -215,8 +214,9 @@ def get_samples_given_saved_dict(sdpath, numsamples, samplabels=None, device='cp
     Args:
         sdpath: Checkpoint path
         numsamples: Nsamples
-        samplabels: parameter for each sample. SAME shape as numsamples.
-    returns: numpy
+        samplabels: parameter for each sample. SAME shape as numsamples. Already normalized.
+    Returns:
+        samples: Also in x0 space i.e invtr(x0) has NOT been applied.
     '''
     assert numsamples == samplabels.shape[0], 'Conditioning params must be the same as the number of samples.'
     sdict = torch.load(sdpath, map_location='cpu') # earlier cpu
