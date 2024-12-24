@@ -759,7 +759,9 @@ def plot_param_inference_network_predictions(resdict, model, device='cpu', save_
 
 def get_truefields_for_sampled_fields(resdict, type='train', custom_file=None):
     '''
-    :param resdict: ASSUMES ANY repeated parameters are contiguous!!!
+    :param resdict: Dictionary containing
+        - params: Parameters whose fields you want to retrieve. 
+        ASSUMES ANY repeated parameters are contiguous.
     :param type: 'train', 'validation', 'custom', 'simba'
     :param custom_file:
     Returns:
