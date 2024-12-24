@@ -624,7 +624,7 @@ def get_results_model(model, device, test_loader):
     dataset[:, 12:] = errors_NN # convert variance to std
     return dataset, Norm_error
 
-def get_train_cosmo_params(Bsize=20, path='/n/holylfs06/LABS/finkbeiner_lab/Users/nmudur/project_dirs/CMD_2D/data_processed/params_IllustrisTNG.txt', seed=0, replace=False):
+def get_train_cosmo_params(Bsize=20, path='/path/to/params_IllustrisTNG.txt', seed=0, replace=False):
     #To make this compatible with existing code, use replace = True
     params = np.loadtxt(path)
     train_upplim = int(len(params)*0.7)
@@ -633,7 +633,7 @@ def get_train_cosmo_params(Bsize=20, path='/n/holylfs06/LABS/finkbeiner_lab/User
     params_actual = params[:train_upplim, :][idx]
     return params_actual.astype(np.float32)
 
-def get_train_cosmo_params_in_range(param_range, labels_subset, path='../data_processed/params_IllustrisTNG.txt', get_indices=False):
+def get_train_cosmo_params_in_range(param_range, labels_subset, path='/path/to/params_IllustrisTNG.txt', get_indices=False):
     params = np.loadtxt(path)
     train_upplim = int(len(params)*0.7)
     params_actual = params[:train_upplim, :]
@@ -644,7 +644,7 @@ def get_train_cosmo_params_in_range(param_range, labels_subset, path='../data_pr
     return params_actual.astype(np.float32)[mask, :]
 
 
-def get_validation_cosmo_params(Bsize=20, valpath='/n/holylfs06/LABS/finkbeiner_lab/Users/nmudur/project_dirs/CMD_2D/data_processed/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx256_val.npz', seed=0, replace=False):
+def get_validation_cosmo_params(Bsize=20, valpath='/path/to/LogMaps_Mcdm_IllustrisTNG_LH_z=0.00_Nx256_val.npz', seed=0, replace=False):
     valmmap = np.load(valpath, mmap_mode='r')
     valbatch = valmmap['params']
     rng = np.random.default_rng(seed)
@@ -652,7 +652,7 @@ def get_validation_cosmo_params(Bsize=20, valpath='/n/holylfs06/LABS/finkbeiner_
     params_actual = valbatch[idx]
     return params_actual
 
-def get_simba_cosmo_params(Bsize=20, path='/n/holylfs06/LABS/finkbeiner_lab/Users/nmudur/project_dirs/CMD_2D/data_processed/LogMaps_Mcdm_SIMBA_LH_z=0.00_Nx256.npz', seed=0, replace=False):
+def get_simba_cosmo_params(Bsize=20, path='/path/to/LogMaps_Mcdm_SIMBA_LH_z=0.00_Nx256.npz', seed=0, replace=False):
     mmap = np.load(path, mmap_mode='r')
     params = mmap['params']
     rng = np.random.default_rng(seed)
